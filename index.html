@@ -10,41 +10,80 @@
         html, body {
             height: 100%;
             margin: 0;
-            font-family: "Inter", sans-serif;
-            background-color: #131313;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0b1c22;
             color: white;
         }
 
         .container {
             max-width: 1200px;
-            margin: auto;
+            margin: 0 auto;
             padding: 20px;
             text-align: center;
         }
 
         .main-planet {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-
-        .orbit {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .small-planet {
-            margin: 10px;
-            padding: 10px;
-            background-color: #E730CA;
+            position: relative;
+            background: #C25447;
+            box-shadow: inset -30px -30px 0px #bf4d3f;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            width: 100px;
-            height: 100px;
             display: flex;
             justify-content: center;
             align-items: center;
-            cursor: pointer;
+            color: white;
+            font-size: 1.2em;
+            text-align: center;
+            padding: 20px;
+            margin: 20px auto;
         }
+
+        .orbit {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .small-planet {
+            position: absolute;
+            background: #888;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            pointer-events: auto;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 0.8em;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .small-planet:nth-child(1) { top: 0; left: 50%; transform: translate(-50%, -50%); }
+        .small-planet:nth-child(2) { top: 15%; left: 85%; transform: translate(-50%, -50%); }
+        .small-planet:nth-child(3) { top: 50%; left: 100%; transform: translate(-50%, -50%); }
+        .small-planet:nth-child(4) { top: 85%; left: 85%; transform: translate(-50%, -50%); }
+        .small-planet:nth-child(5) { top: 100%; left: 50%; transform: translate(-50%, -50%); }
+        .small-planet:nth-child(6) { top: 85%; left: 15%; transform: translate(-50%, -50%); }
+        .small-planet:nth-child(7) { top: 50%; left: 0%; transform: translate(-50%, -50%); }
+        .small-planet:nth-child(8) { top: 15%; left: 15%; transform: translate(-50%, -50%); }
 
         #content-container {
             margin-top: 20px;
@@ -52,6 +91,18 @@
             background-color: #1f1f1f;
             border-radius: 10px;
         }
+
+        #backButton {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #C25447;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 
@@ -70,11 +121,13 @@
     </div>
 
     <div id="content-container"></div>
+    <button id="backButton" style="display:none;" onclick="goBack()">Retour</button>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const planets = document.querySelectorAll('.small-planet');
             const contentContainer = document.getElementById('content-container');
+            const backButton = document.getElementById('backButton');
 
             planets.forEach(planet => {
                 planet.addEventListener('click', function () {
@@ -83,13 +136,19 @@
                         .then(response => response.text())
                         .then(data => {
                             contentContainer.innerHTML = data;
+                            backButton.style.display = 'block';
+                            document.querySelector('.container').style.display = 'none';
                         })
                         .catch(error => console.error('Error loading content:', error));
                 });
             });
-
-            // Remove the initial content load
         });
+
+        function goBack() {
+            document.getElementById('content-container').innerHTML = '';
+            document.getElementById('backButton').style.display = 'none';
+            document.querySelector('.container').style.display = 'flex';
+        }
     </script>
 </body>
 

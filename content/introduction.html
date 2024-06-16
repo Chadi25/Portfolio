@@ -76,14 +76,28 @@
             text-align: center;
         }
 
-        .skills-section h2 {
+        .skills-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 20px;
+        }
+
+        .skills-header img {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        .skills-header h2 {
             font-size: 2.5rem;
         }
 
         .skills-section ul {
             list-style: none;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .skills-section ul li {
@@ -92,6 +106,7 @@
             margin: 10px 0;
             border-radius: 5px;
             font-size: 1.2rem;
+            width: 80%;
         }
     </style>
 </head>
@@ -117,7 +132,10 @@
         </section>
 
         <section id="skills-section" class="skills-section">
-            <h2>LEVEL UP</h2>
+            <div class="skills-header">
+                <img src="file-7XvPYLAIADhH2NRuGUYOgjha" alt="LEVEL UP Logo">
+                <h2>LEVEL UP</h2>
+            </div>
             <ul>
                 <li>Skill 1: Description of skill 1.</li>
                 <li>Skill 2: Description of skill 2.</li>

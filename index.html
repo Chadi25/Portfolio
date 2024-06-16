@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio de Stage</title>
     <link rel="stylesheet" href="styles.css">
+    <title>Portfolio de Stage</title>
 </head>
+
 <body>
     <div class="container">
         <div class="main-planet">Oral de Stage<br>BUT2 R&T</div>
@@ -19,14 +21,41 @@
             <div class="small-planet" data-title="Conclusion" data-content="content/conclusion.html">Conclusion</div>
         </div>
     </div>
+
     <script>
-        const planets = document.querySelectorAll('.small-planet');
-        planets.forEach(planet => {
-            planet.addEventListener('click', () => {
-                const contentUrl = planet.getAttribute('data-content');
-                window.location.href = contentUrl;
+        document.addEventListener("DOMContentLoaded", function() {
+            const planets = document.querySelectorAll('.small-planet');
+            planets.forEach(planet => {
+                planet.addEventListener('click', function() {
+                    const contentUrl = this.getAttribute('data-content');
+                    fetch(contentUrl)
+                        .then(response => response.text())
+                        .then(html => {
+                            document.querySelector('.container').innerHTML = html;
+                            // Re-ajouter le bouton retour après le chargement de la page
+                            const backButton = document.createElement('button');
+                            backButton.id = 'backButton';
+                            backButton.innerText = 'Retour';
+                            backButton.onclick = () => location.reload();
+                            document.body.appendChild(backButton);
+                        })
+                        .catch(error => console.error('Error loading content:', error));
+                });
+            });
+
+            const zoomContainer = document.querySelector('.container');
+            const mainPlanet = document.querySelector('.main-planet');
+            const orbit = document.querySelector('.orbit');
+
+            mainPlanet.addEventListener('click', () => {
+                zoomContainer.classList.add('zoom');
+                setTimeout(() => {
+                    zoomContainer.style.display = 'none';
+                    orbit.style.display = 'flex';
+                }, 1000);
             });
         });
     </script>
 </body>
+
 </html>

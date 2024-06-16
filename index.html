@@ -1,13 +1,105 @@
 <!DOCTYPE html>
-<html lang="fr-FR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
   <title>Portfolio de Stage</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background-color: #0b1c22;
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .main-planet {
+      position: relative;
+      background: #C25447;
+      box-shadow: inset -30px -30px 0px #bf4d3f;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1.2em;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 500px;
+      height: 500px;
+      margin-top: -250px;
+      margin-left: -250px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .small-planet {
+      position: absolute;
+      background: #888;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      pointer-events: auto;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 0.8em;
+      text-align: center;
+      padding: 5px;
+    }
+
+    .small-planet:nth-child(1) { top: 0; left: 50%; transform: translate(-50%, -50%); }
+    .small-planet:nth-child(2) { top: 15%; left: 85%; transform: translate(-50%, -50%); }
+    .small-planet:nth-child(3) { top: 50%; left: 100%; transform: translate(-50%, -50%); }
+    .small-planet:nth-child(4) { top: 85%; left: 85%; transform: translate(-50%, -50%); }
+    .small-planet:nth-child(5) { top: 100%; left: 50%; transform: translate(-50%, -50%); }
+    .small-planet:nth-child(6) { top: 85%; left: 15%; transform: translate(-50%, -50%); }
+    .small-planet:nth-child(7) { top: 50%; left: 0%; transform: translate(-50%, -50%); }
+    .small-planet:nth-child(8) { top: 15%; left: 15%; transform: translate(-50%, -50%); }
+
+    #backButton {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #C25447;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
+  <div id="contentContainer" class="container">
     <div class="main-planet">Oral de Stage<br>BUT2 R&T</div>
     <div class="orbit">
       <div class="small-planet" data-title="Introduction" data-content="content/introduction.html">Introduction</div>
@@ -19,8 +111,7 @@
       <div class="small-planet" data-title="Conclusion" data-content="content/conclusion.html">Conclusion</div>
     </div>
   </div>
-  <button id="backButton" onclick="showMainPage()">Retour</button>
-  <div id="contentContainer"></div>
+  <button id="backButton" style="display: none;" onclick="showMainPage()">Retour</button>
 
   <script>
     document.querySelectorAll('.small-planet').forEach(planet => {
@@ -31,7 +122,7 @@
           .then(data => {
             document.getElementById('contentContainer').innerHTML = data;
             document.querySelector('.container').style.display = 'none';
-            document.getElementById('contentContainer').style.display = 'block';
+            document.getElementById('backButton').style.display = 'block';
           })
           .catch(error => console.error('Error loading content:', error));
       });
@@ -39,8 +130,8 @@
 
     function showMainPage() {
       document.querySelector('.container').style.display = 'flex';
-      document.getElementById('contentContainer').style.display = 'none';
       document.getElementById('contentContainer').innerHTML = '';
+      document.getElementById('backButton').style.display = 'none';
     }
   </script>
 </body>

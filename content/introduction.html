@@ -7,8 +7,7 @@
     <title>Introduction</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        html,
-        body {
+        html, body {
             height: 100%;
             margin: 0;
             font-family: "Inter", sans-serif;
@@ -23,14 +22,13 @@
             text-align: center;
         }
 
-        .image-section,
-        .skills-section {
+        .image-section, .skills-section {
             margin-bottom: 50px;
         }
 
         .image-wrapper {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
             flex-wrap: wrap;
         }
@@ -52,6 +50,8 @@
         .scroll-arrow {
             margin: 40px 0;
             cursor: pointer;
+            display: flex;
+            justify-content: center;
         }
 
         .scroll-arrow svg {
@@ -62,11 +62,9 @@
         }
 
         @keyframes bounce {
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateY(0);
             }
-
             50% {
                 transform: translateY(-10px);
             }
@@ -77,9 +75,6 @@
         }
 
         .skills-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
             margin-bottom: 20px;
         }
 
@@ -89,8 +84,7 @@
             display: inline-block;
         }
 
-        .skills-header h2::before,
-        .skills-header h2::after {
+        .skills-header h2::before, .skills-header h2::after {
             content: '';
             position: absolute;
             top: 50%;
@@ -107,18 +101,19 @@
             right: -60px;
         }
 
-        .skills-section ul {
-            list-style: none;
-            padding: 0;
-            display: inline-block;
-            text-align: left;
+        .skills-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .skills-section ul li {
+        .skill-item {
             background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            width: 30%;
             font-size: 1.2rem;
         }
     </style>
@@ -150,13 +145,13 @@
             <div class="skills-header">
                 <h2>LEVEL UP</h2>
             </div>
-            <ul>
-                <li>Skill 1: Description of skill 1.</li>
-                <li>Skill 2: Description of skill 2.</li>
-                <li>Skill 3: Description of skill 3.</li>
-                <li>Skill 4: Description of skill 4.</li>
-                <li>Skill 5: Description of skill 5.</li>
-            </ul>
+            <div class="skills-list">
+                <div class="skill-item">Skill 1: Description of skill 1.</div>
+                <div class="skill-item">Skill 2: Description of skill 2.</div>
+                <div class="skill-item">Skill 3: Description of skill 3.</div>
+                <div class="skill-item">Skill 4: Description of skill 4.</div>
+                <div class="skill-item">Skill 5: Description of skill 5.</div>
+            </div>
         </section>
     </div>
 </body>

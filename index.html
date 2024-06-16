@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Planets</title>
+</head>
+<body>
+  <div class="container">
+    <div class="main-planet">Oral de Stage<br>BUT2 R&T</div>
+    <div class="orbit">
+      <div class="small-planet" data-title="Introduction" data-content="content/introduction.html">Introduction</div>
+      <div class="small-planet" data-title="Présentation de l'entreprise" data-content="content/entreprise.html">Présentation de l'entreprise</div>
+      <div class="small-planet" data-title="Projet principal" data-content="content/projet.html">Projet principal</div>
+      <div class="small-planet" data-title="Infrastructure réseau" data-content="content/infrastructure.html">Infrastructure réseau</div>
+      <div class="small-planet" data-title="Évolution des imprimantes" data-content="content/imprimantes.html">Évolution des imprimantes</div>
+      <div class="small-planet" data-title="Dépannages courants" data-content="content/depannages.html">Dépannages courants</div>
+      <div class="small-planet" data-title="Conclusion" data-content="content/conclusion.html">Conclusion</div>
+    </div>
+  </div>
+
+  <div class="zoom-container zoom-background" id="zoomPage" style="display: none;">
+    <button id="backButton">Retour</button>
+    <h1 id="planetTitle"></h1>
+    <div id="contentContainer"></div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.small-planet').forEach(planet => {
+      planet.addEventListener('click', () => {
+        planet.classList.add('zoom');
+        setTimeout(() => {
+          document.querySelector('.container').style.display = 'none';
+          const zoomPage = document.getElementById('zoomPage');
+          document.getElementById('planetTitle').innerText = planet.getAttribute('data-title');
+          
+          fetch(planet.getAttribute('data-content'))
+            .then(response => response.text())
+            .then(data => {
+              document.getElementById('contentContainer').innerHTML = data;
+            });
+          
+          zoomPage.style.display = 'flex';
+        }, 1000);
+      });
+    });
+
+    document.getElementById('backButton').addEventListener('click', () => {
+      document.querySelector('.container').style.display = 'flex';
+      document.getElementById('zoomPage').style.display = 'none';
+    });
+  </script>
+</body>
+</html>

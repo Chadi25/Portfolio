@@ -20,6 +20,7 @@
             max-width: 1200px;
             margin: auto;
             padding: 20px;
+            text-align: center;
         }
 
         .image-section,
@@ -30,11 +31,13 @@
         .image-wrapper {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .image-container {
-            width: 48%;
-            position: relative;
+            width: 45%;
+            margin: 20px 0;
         }
 
         .image-container img {
@@ -44,13 +47,11 @@
 
         .image-description {
             margin-top: 10px;
-            text-align: center;
         }
 
         .scroll-arrow {
-            text-align: center;
+            margin: 40px 0;
             cursor: pointer;
-            margin: 20px 0;
         }
 
         .scroll-arrow svg {
@@ -109,6 +110,8 @@
         .skills-section ul {
             list-style: none;
             padding: 0;
+            display: inline-block;
+            text-align: left;
         }
 
         .skills-section ul li {
@@ -117,9 +120,6 @@
             margin: 10px 0;
             border-radius: 5px;
             font-size: 1.2rem;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
         }
     </style>
 </head>

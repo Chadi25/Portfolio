@@ -70,6 +70,27 @@
         });
       }, 100); // Assurez-vous que la transition est visible
     });
+    document.addEventListener('DOMContentLoaded', function() {
+      const planets = document.querySelectorAll('.small-planet');
+      const contentContainer = document.getElementById('content-container');
+
+      planets.forEach(planet => {
+        planet.addEventListener('click', function() {
+          const contentUrl = planet.getAttribute('data-content');
+          fetch(contentUrl)
+            .then(response => response.text())
+            .then(data => {
+              contentContainer.innerHTML = data;
+            })
+            .catch(error => console.error('Error loading content:', error));
+        });
+      });
+
+      // Optionally, load the first section by default
+      if (planets.length > 0) {
+        planets[0].click();
+      }
+    });
   </script>
 </body>
 </html>

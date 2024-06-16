@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>Portfolio de Stage</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -19,36 +19,14 @@
             <div class="small-planet" data-title="Conclusion" data-content="content/conclusion.html">Conclusion</div>
         </div>
     </div>
-
-    <div id="content-container"></div>
-    <button id="backButton" style="display:none;" onclick="goBack()">Retour</button>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const planets = document.querySelectorAll('.small-planet');
-            const contentContainer = document.getElementById('content-container');
-            const backButton = document.getElementById('backButton');
-
-            planets.forEach(planet => {
-                planet.addEventListener('click', function () {
-                    const contentUrl = planet.getAttribute('data-content');
-                    fetch(contentUrl)
-                        .then(response => response.text())
-                        .then(data => {
-                            contentContainer.innerHTML = data;
-                            backButton.style.display = 'block';
-                            document.querySelector('.container').style.display = 'none';
-                        })
-                        .catch(error => console.error('Error loading content:', error));
-                });
+        const planets = document.querySelectorAll('.small-planet');
+        planets.forEach(planet => {
+            planet.addEventListener('click', () => {
+                const contentUrl = planet.getAttribute('data-content');
+                window.location.href = contentUrl;
             });
         });
-
-        function goBack() {
-            document.getElementById('content-container').innerHTML = '';
-            document.getElementById('backButton').style.display = 'none';
-            document.querySelector('.container').style.display = 'flex';
-        }
     </script>
 </body>
 </html>

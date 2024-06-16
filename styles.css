@@ -7,6 +7,7 @@ html, body {
   padding: 0;
   overflow: hidden;
   color: white;
+  font-family: "Inter", sans-serif;
 }
 
 .container {
@@ -34,10 +35,13 @@ html, body {
 }
 
 .orbit {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 500px;
   height: 500px;
-  margin: 0 auto;
+  margin-top: -250px;
+  margin-left: -250px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   animation: rotate 20s linear infinite;
@@ -78,11 +82,36 @@ html, body {
 .small-planet:nth-child(7) { top: 50%; left: 0%; transform: translate(-50%, -50%); }
 .small-planet:nth-child(8) { top: 15%; left: 15%; transform: translate(-50%, -50%); }
 
-#content-container {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #1f1f1f;
-  border-radius: 10px;
+.zoom-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  position: relative;
+}
+
+.zoom-background {
+  background: #0b1c22;
+}
+
+h1 {
+  color: white;
+  font-size: 3em;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(10);
+  }
+}
+
+.zoom {
+  animation: zoomIn 1s forwards;
 }
 
 #backButton {
@@ -94,4 +123,113 @@ html, body {
   color: white;
   padding: 10px 20px;
   cursor: pointer;
+}
+
+body {
+  background-color: #131313;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.header h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.header .highlight {
+  color: #FF33DE;
+}
+
+.header p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.header-buttons .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.btn-primary {
+  background-color: #E730CA;
+  color: white;
+  border: 1px solid transparent;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #E730CA;
+  border: 1px solid #E730CA;
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: #E730CA;
+  border: 1px solid #E730CA;
+}
+
+.btn-secondary:hover {
+  background-color: #E730CA;
+  color: white;
+}
+
+.circle-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.circle-svg {
+  width: 100%;
+  height: auto;
+}
+
+.stat {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(calc(var(--i) * 30deg));
+  width: 150px;
+  height: 200px;
+  background-size: cover;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 10px;
+}
+
+.stat-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.btn-small {
+  background: transparent;
+  border: 1px solid #161616;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #161616;
+  cursor: pointer;
+  transition: color 0.3s, border 0.3s;
+}
+
+.btn-small:hover {
+  color: #E730CA;
+  border-color: #E730CA;
 }

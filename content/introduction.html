@@ -1,159 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Test Page</title>
     <style>
-        html, body {
-            height: 100%;
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
-            font-family: "Inter", sans-serif;
-            background-color: #131313;
-            color: white;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
         }
-
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
         .container {
-            max-width: 1200px;
-            margin: auto;
             padding: 20px;
-            text-align: center;
         }
-
-        .image-section, .skills-section {
-            margin-bottom: 50px;
-        }
-
-        .image-wrapper {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .image-container {
-            width: 45%;
-            margin: 20px 0;
-        }
-
-        .image-container img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        .image-description {
-            margin-top: 10px;
-        }
-
-        .scroll-arrow {
-            margin: 40px 0;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-        }
-
-        .scroll-arrow svg {
-            width: 40px;
-            height: 40px;
-            fill: #E730CA;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .skills-section {
-            text-align: center;
-        }
-
-        .skills-header {
-            margin-bottom: 20px;
-        }
-
-        .skills-header h2 {
-            font-size: 2.5rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .skills-header h2::before, .skills-header h2::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 50px;
-            height: 3px;
-            background: #E730CA;
-        }
-
-        .skills-header h2::before {
-            left: -60px;
-        }
-
-        .skills-header h2::after {
-            right: -60px;
-        }
-
-        .skills-list {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .skill-item {
-            background: rgba(255, 255, 255, 0.1);
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
             padding: 15px;
-            margin: 10px;
-            border-radius: 10px;
-            width: 30%;
-            font-size: 1.2rem;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
-
 <body>
+
+    <header>
+        <h1>Welcome to the Test Page</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <div class="container">
-        <section class="image-section">
-            <div class="image-wrapper">
-                <div class="image-container">
-                    <img src="https://coinstats.app/blog/wp-content/uploads/2023/06/The-Rise-of-NFTs-How-Will-AI-Impact-the-NFT-Art-Ecosystem-copy-1-1200x900.webp"
-                        alt="Description of Image 1">
-                    <div class="image-description">Description of Image 1</div>
-                </div>
-                <div class="image-container">
-                    <img src="https://coinstats.app/blog/wp-content/uploads/2023/06/The-Rise-of-NFTs-How-Will-AI-Impact-the-NFT-Art-Ecosystem-copy-1-1200x900.webp"
-                        alt="Description of Image 2">
-                    <div class="image-description">Description of Image 2</div>
-                </div>
-            </div>
-            <div class="scroll-arrow" onclick="document.getElementById('skills-section').scrollIntoView({ behavior: 'smooth' });">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12 21l-12-18h24z" />
-                </svg>
-            </div>
-        </section>
-
-        <section id="skills-section" class="skills-section">
-            <div class="skills-header">
-                <h2>LEVEL UP</h2>
-            </div>
-            <div class="skills-list">
-                <div class="skill-item">Skill 1: Description of skill 1.</div>
-                <div class="skill-item">Skill 2: Description of skill 2.</div>
-                <div class="skill-item">Skill 3: Description of skill 3.</div>
-                <div class="skill-item">Skill 4: Description of skill 4.</div>
-                <div class="skill-item">Skill 5: Description of skill 5.</div>
-            </div>
-        </section>
+        <div class="card">
+            <h2>Card Title 1</h2>
+            <p>This is a sample card. You can use this section to describe content.</p>
+        </div>
+        <div class="card">
+            <h2>Card Title 2</h2>
+            <p>This is another sample card. Customize it as you like.</p>
+        </div>
     </div>
-</body>
 
+    <footer>
+        <p>&copy; 2024 Test Page. All rights reserved.</p>
+    </footer>
+
+</body>
 </html>

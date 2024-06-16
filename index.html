@@ -1,96 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Portfolio de Stage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Portfolio de Stage</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background-color: #131313;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .main-planet {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .orbit {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .small-planet {
+            margin: 10px;
+            padding: 10px;
+            background-color: #E730CA;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #content-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #1f1f1f;
+            border-radius: 10px;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="main-planet">Oral de Stage<br>BUT2 R&T</div>
-    <div class="orbit">
-      <div class="small-planet" data-title="Introduction" data-content="content/introduction.html">Introduction</div>
-      <div class="small-planet" data-title="Présentation de l'entreprise" data-content="content/entreprise.html">Présentation de l'entreprise</div>
-      <div class="small-planet" data-title="Projet principal" data-content="content/projet.html">Projet principal</div>
-      <div class="small-planet" data-title="Infrastructure réseau" data-content="content/infrastructure.html">Infrastructure réseau</div>
-      <div class="small-planet" data-title="Évolution des imprimantes" data-content="content/imprimantes.html">Évolution des imprimantes</div>
-      <div class="small-planet" data-title="Dépannages courants" data-content="content/depannages.html">Dépannages courants</div>
-      <div class="small-planet" data-title="Conclusion" data-content="content/conclusion.html">Conclusion</div>
+    <div class="container">
+        <div class="main-planet">Oral de Stage<br>BUT2 R&T</div>
+        <div class="orbit">
+            <div class="small-planet" data-title="Introduction" data-content="content/introduction.html">Introduction</div>
+            <div class="small-planet" data-title="Présentation de l'entreprise" data-content="content/entreprise.html">Présentation de l'entreprise</div>
+            <div class="small-planet" data-title="Projet principal" data-content="content/projet.html">Projet principal</div>
+            <div class="small-planet" data-title="Infrastructure réseau" data-content="content/infrastructure.html">Infrastructure réseau</div>
+            <div class="small-planet" data-title="Évolution des imprimantes" data-content="content/imprimantes.html">Évolution des imprimantes</div>
+            <div class="small-planet" data-title="Dépannages courants" data-content="content/depannages.html">Dépannages courants</div>
+            <div class="small-planet" data-title="Conclusion" data-content="content/conclusion.html">Conclusion</div>
+        </div>
     </div>
-  </div>
 
-  <div class="zoom-container zoom-background" id="zoomPage" style="display: none;">
-    <button id="backButton">Retour</button>
-    <h1 id="planetTitle"></h1>
-    <div id="contentContainer"></div>
-  </div>
+    <div id="content-container"></div>
 
-  <script>
-    document.querySelectorAll('.small-planet').forEach(planet => {
-      planet.addEventListener('click', () => {
-        planet.classList.add('zoom');
-        setTimeout(() => {
-          document.querySelector('.container').style.display = 'none';
-          const zoomPage = document.getElementById('zoomPage');
-          document.getElementById('planetTitle').innerText = planet.getAttribute('data-title');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const planets = document.querySelectorAll('.small-planet');
+            const contentContainer = document.getElementById('content-container');
 
-          fetch(planet.getAttribute('data-content'))
-            .then(response => response.text())
-            .then(data => {
-              document.getElementById('contentContainer').innerHTML = data;
-
-              // Ajouter le script de zoom des images après le chargement du contenu
-              document.querySelectorAll('.zoomable').forEach(image => {
-                image.addEventListener('click', () => {
-                  if (image.style.transform === 'scale(2)') {
-                    image.style.transform = 'scale(1)';
-                  } else {
-                    image.style.transform = 'scale(2)';
-                  }
+            planets.forEach(planet => {
+                planet.addEventListener('click', function () {
+                    const contentUrl = planet.getAttribute('data-content');
+                    fetch(contentUrl)
+                        .then(response => response.text())
+                        .then(data => {
+                            contentContainer.innerHTML = data;
+                        })
+                        .catch(error => console.error('Error loading content:', error));
                 });
-              });
             });
 
-          zoomPage.style.display = 'flex';
-        }, 1000); // Durée de l'animation
-      });
-    });
-
-    document.getElementById('backButton').addEventListener('click', () => {
-      document.querySelectorAll('.small-planet').forEach(planet => {
-        planet.classList.remove('zoom');
-        planet.classList.add('zoom-out');
-      });
-      setTimeout(() => {
-        document.querySelector('.container').style.display = 'flex';
-        document.getElementById('zoomPage').style.display = 'none';
-        document.querySelectorAll('.small-planet').forEach(planet => {
-          planet.classList.remove('zoom-out');
+            // Remove the initial content load
         });
-      }, 100); // Assurez-vous que la transition est visible
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-      const planets = document.querySelectorAll('.small-planet');
-      const contentContainer = document.getElementById('content-container');
-
-      planets.forEach(planet => {
-        planet.addEventListener('click', function() {
-          const contentUrl = planet.getAttribute('data-content');
-          fetch(contentUrl)
-            .then(response => response.text())
-            .then(data => {
-              contentContainer.innerHTML = data;
-            })
-            .catch(error => console.error('Error loading content:', error));
-        });
-      });
-
-      // Optionally, load the first section by default
-      if (planets.length > 0) {
-        planets[0].click();
-      }
-    });
-  </script>
+    </script>
 </body>
+
 </html>

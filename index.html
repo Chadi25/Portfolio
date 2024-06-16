@@ -34,32 +34,22 @@
           document.querySelector('.container').style.display = 'none';
           const zoomPage = document.getElementById('zoomPage');
           document.getElementById('planetTitle').innerText = planet.getAttribute('data-title');
-  
+          
           fetch(planet.getAttribute('data-content'))
             .then(response => response.text())
             .then(data => {
               document.getElementById('contentContainer').innerHTML = data;
             });
-  
+          
           zoomPage.style.display = 'flex';
-        }, 1000); // Durée de l'animation
+        }, 1000);
       });
     });
-  
+
     document.getElementById('backButton').addEventListener('click', () => {
-      document.querySelectorAll('.small-planet').forEach(planet => {
-        planet.classList.remove('zoom');
-        planet.classList.add('zoom-out');
-      });
-      setTimeout(() => {
-        document.querySelector('.container').style.display = 'flex';
-        document.getElementById('zoomPage').style.display = 'none';
-        document.querySelectorAll('.small-planet').forEach(planet => {
-          planet.classList.remove('zoom-out');
-        });
-      }, 100); // Assurez-vous que la transition est visible
+      document.querySelector('.container').style.display = 'flex';
+      document.getElementById('zoomPage').style.display = 'none';
     });
   </script>
-  
 </body>
 </html>

@@ -39,6 +39,17 @@
             .then(response => response.text())
             .then(data => {
               document.getElementById('contentContainer').innerHTML = data;
+
+              // Ajouter le script de zoom des images après le chargement du contenu
+              document.querySelectorAll('.zoomable').forEach(image => {
+                image.addEventListener('click', () => {
+                  if (image.style.transform === 'scale(2)') {
+                    image.style.transform = 'scale(1)';
+                  } else {
+                    image.style.transform = 'scale(2)';
+                  }
+                });
+              });
             });
 
           zoomPage.style.display = 'flex';

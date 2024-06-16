@@ -25,24 +25,27 @@
     <div id="contentContainer"></div>
 
     <script>
-        document.querySelectorAll('.small-planet').forEach(planet => {
-            planet.addEventListener('click', () => {
-                const contentUrl = planet.getAttribute('data-content');
-                fetch(contentUrl)
-                    .then(response => response.text())
-                    .then(data => {
-                        document.getElementById('contentContainer').innerHTML = data;
-                        document.querySelector('.container').style.display = 'none';
-                    })
-                    .catch(error => console.error('Error loading content:', error));
-            });
-        });
-
-        function showMainPage() {
-            document.querySelector('.container').style.display = 'flex';
-            document.getElementById('contentContainer').innerHTML = '';
-        }
-    </script>
+      document.querySelectorAll('.small-planet').forEach(planet => {
+          planet.addEventListener('click', () => {
+              const contentUrl = planet.getAttribute('data-content');
+              fetch(contentUrl)
+                  .then(response => response.text())
+                  .then(data => {
+                      document.getElementById('contentContainer').innerHTML = data;
+                      document.querySelector('.container').style.display = 'none';
+                      document.getElementById('contentContainer').style.display = 'block';
+                  })
+                  .catch(error => console.error('Error loading content:', error));
+          });
+      });
+  
+      function showMainPage() {
+          document.querySelector('.container').style.display = 'flex';
+          document.getElementById('contentContainer').style.display = 'none';
+          document.getElementById('contentContainer').innerHTML = '';
+      }
+  </script>
+  
 </body>
 
 </html>

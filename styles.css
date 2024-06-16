@@ -100,7 +100,6 @@ body {
   position: relative;
   width: 70px;
   height: 70px;
-  transition: transform 0.3s ease-in-out;
 }
 
 .card-details h3 {
@@ -151,10 +150,6 @@ body {
   transform: translateX(0);
   opacity: 1;
   visibility: visible;
-}
-
-.zoomable:hover {
-  transform: scale(2);
 }
 
 /* ============= Responsive Ipad ==================== */

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <title>Planets</title>
+  <title>Portfolio de Stage</title>
 </head>
 <body>
   <div class="container">
@@ -34,21 +34,30 @@
           document.querySelector('.container').style.display = 'none';
           const zoomPage = document.getElementById('zoomPage');
           document.getElementById('planetTitle').innerText = planet.getAttribute('data-title');
-          
+
           fetch(planet.getAttribute('data-content'))
             .then(response => response.text())
             .then(data => {
               document.getElementById('contentContainer').innerHTML = data;
             });
-          
+
           zoomPage.style.display = 'flex';
-        }, 1000);
+        }, 1000); // Durée de l'animation
       });
     });
 
     document.getElementById('backButton').addEventListener('click', () => {
-      document.querySelector('.container').style.display = 'flex';
-      document.getElementById('zoomPage').style.display = 'none';
+      document.querySelectorAll('.small-planet').forEach(planet => {
+        planet.classList.remove('zoom');
+        planet.classList.add('zoom-out');
+      });
+      setTimeout(() => {
+        document.querySelector('.container').style.display = 'flex';
+        document.getElementById('zoomPage').style.display = 'none';
+        document.querySelectorAll('.small-planet').forEach(planet => {
+          planet.classList.remove('zoom-out');
+        });
+      }, 100); // Assurez-vous que la transition est visible
     });
   </script>
 </body>
